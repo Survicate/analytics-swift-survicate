@@ -1,5 +1,5 @@
 # Swift Destination Plugin Template
-This template is resolved around `ExampleDestination` (to be replaced by you). 
+This template is resolved around `SurvicateDestination` (to be replaced by you). 
 
 ## What does the template provide
 ### Data class for holding settings

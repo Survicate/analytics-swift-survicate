@@ -1,6 +1,6 @@
 //
-//  ExampleDestination.swift
-//  ExampleDestination
+//  SurvicateDestination.swift
+//  SurvicateDestination
 //
 //  Created by Cody Garvin on 9/13/21.
 //
@@ -35,25 +35,25 @@
 
 import Foundation
 import Segment
-//import ExampleModule // TODO: Import partner SDK module here
+import Survicate
 
 /**
  An implementation of the Example Analytics device mode destination as a plugin.
  */
  
-@objc(SEGExampleDestination)
-public class ObjCSegmentMixpanel: NSObject, ObjCDestination, ObjCDestinationShim {
-    public func instance() -> DestinationPlugin { return ExampleDestination() }
-}
+//@objc(SEGSurvicateDestination)
+//public class ObjCSegmentMixpanel: NSObject, ObjCDestination, ObjCDestinationShim {
+//    public func instance() -> DestinationPlugin { return SurvicateDestination() }
+//}
 
-public class ExampleDestination: DestinationPlugin {
+public class SurvicateDestination: DestinationPlugin {
     public let timeline = Timeline()
     public let type = PluginType.destination
     // TODO: Fill this out with your settings key that matches your destination in the Segment App
-    public let key = "Example"
+    public let key = "Survicate"
     public var analytics: Analytics? = nil
     
-    private var exampleSettings: ExampleSettings?
+    private var SurvicateSettings: SurvicateSettings?
         
     public init() { }
 
@@ -63,8 +63,8 @@ public class ExampleDestination: DestinationPlugin {
         
         // Grab the settings and assign them for potential later usage.
         // Note: Since integrationSettings is generic, strongly type the variable.
-        guard let tempSettings: ExampleSettings = settings.integrationSettings(forPlugin: self) else { return }
-        exampleSettings = tempSettings
+        guard let tempSettings: SurvicateSettings = settings.integrationSettings(forPlugin: self) else { return }
+        SurvicateSettings = tempSettings
         
         // TODO: initialize partner SDK here
     }
@@ -85,8 +85,8 @@ public class ExampleDestination: DestinationPlugin {
         var returnEvent = event
         
         // !!!: Sample of how to convert property keys
-        if let mappedProperties = try? event.properties?.mapTransform(ExampleDestination.eventNameMap,
-                                                                      valueTransform: ExampleDestination.eventValueConversion) {
+        if let mappedProperties = try? event.properties?.mapTransform(SurvicateDestination.eventNameMap,
+                                                                      valueTransform: SurvicateDestination.eventValueConversion) {
             returnEvent.properties = mappedProperties
         }
                 
@@ -130,14 +130,14 @@ public class ExampleDestination: DestinationPlugin {
 }
 
 // Example of versioning for your plugin
-extension ExampleDestination: VersionedPlugin {
+extension SurvicateDestination: VersionedPlugin {
     public static func version() -> String {
         return __destination_version
     }
 }
 
 // Example of what settings may look like.
-private struct ExampleSettings: Codable {
+private struct SurvicateSettings: Codable {
     let apiKey: String
     let configB: Int?
     let configC: Bool?
@@ -145,7 +145,7 @@ private struct ExampleSettings: Codable {
 
 // Rules for converting keys and values to the proper formats that bridge
 // from Segment to the Partner SDK. These are only examples.
-private extension ExampleDestination {
+private extension SurvicateDestination {
     
     static var eventNameMap = ["ADD_TO_CART": "Product Added",
                                "PRODUCT_TAPPED": "Product Tapped"]
