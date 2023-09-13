@@ -66,66 +66,43 @@ public class SurvicateDestination: DestinationPlugin {
         guard let tempSettings: SurvicateSettings = settings.integrationSettings(forPlugin: self) else { return }
         SurvicateSettings = tempSettings
         
-        // TODO: initialize partner SDK here
+        try? SurvicateSdk.shared.setWorkspaceKey(tempSettings.workspaceKey)
+        SurvicateSdk.shared.initialize()
     }
     
     public func identify(event: IdentifyEvent) -> IdentifyEvent? {
-        
-        if let _ = event.traits?.dictionaryValue {
-            // TODO: Do something with traits if they exist
+        if let traits = event.traits?.dictionaryValue {
+            traits.forEach { key, value in
+                guard let value = value as? String else { return }
+                
+                SurvicateSdk.shared.setUserTrait(withName: key, value: value)
+            }
         }
         
-        // TODO: Do something with userId & traits in partner SDK
+        if let userId = event.userId {
+            SurvicateSdk.shared.setUserTrait(withName: "userId", value: userId)
+        }
         
         return event
     }
     
     public func track(event: TrackEvent) -> TrackEvent? {
         
-        var returnEvent = event
+        SurvicateSdk.shared.invokeEvent(name: event.event)
         
-        // !!!: Sample of how to convert property keys
-        if let mappedProperties = try? event.properties?.mapTransform(SurvicateDestination.eventNameMap,
-                                                                      valueTransform: SurvicateDestination.eventValueConversion) {
-            returnEvent.properties = mappedProperties
-        }
-                
-        // TODO: Do something with event & properties in partner SDK from returnEvent
-        
-        return returnEvent
+        return event
     }
     
     public func screen(event: ScreenEvent) -> ScreenEvent? {
+        guard let screenName = event.name else { return event }
         
-        if let _ = event.properties?.dictionaryValue {
-            // TODO: Do something with properties if they exist
-        }
-
-        // TODO: Do something with name, category & properties in partner SDK
-        
-        return event
-    }
-    
-    public func group(event: GroupEvent) -> GroupEvent? {
-        
-        if let _ = event.traits?.dictionaryValue {
-            // TODO: Do something with traits if they exist
-        }
-        
-        // TODO: Do something with groupId & traits in partner SDK
-        
-        return event
-    }
-    
-    public func alias(event: AliasEvent) -> AliasEvent? {
-        
-        // TODO: Do something with previousId & userId in partner SDK
+        SurvicateSdk.shared.enterScreen(value: screenName)
         
         return event
     }
     
     public func reset() {
-        // TODO: Do something with resetting partner SDK
+        SurvicateSdk.shared.reset()
     }
 }
 
@@ -138,25 +115,5 @@ extension SurvicateDestination: VersionedPlugin {
 
 // Example of what settings may look like.
 private struct SurvicateSettings: Codable {
-    let apiKey: String
-    let configB: Int?
-    let configC: Bool?
-}
-
-// Rules for converting keys and values to the proper formats that bridge
-// from Segment to the Partner SDK. These are only examples.
-private extension SurvicateDestination {
-    
-    static var eventNameMap = ["ADD_TO_CART": "Product Added",
-                               "PRODUCT_TAPPED": "Product Tapped"]
-    
-    static var eventValueConversion: ((_ key: String, _ value: Any) -> Any) = { (key, value) in
-        if let valueString = value as? String {
-            return valueString
-                .replacingOccurrences(of: "-", with: "_")
-                .replacingOccurrences(of: " ", with: "_")
-        } else {
-            return value
-        }
-    }
+    let workspaceKey: String
 }
