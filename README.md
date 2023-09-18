@@ -21,7 +21,7 @@ Open your Package.swift file and add the following do your the `dependencies` se
 .package(
 name: "SurvicateDestination",
 url: "https://github.com/survicate/analytics-swift-survicate.git",
-from: "1.1.3"
+from: "3.0.2"
 ),
 ```
 
@@ -39,3 +39,17 @@ Open the file where you setup and configure the Analytics-Swift library. Add thi
 Just under your Analytics-Swift library setup, call `analytics.add(plugin: ...)` to add an instance of the plugin to the Analytics timeline.
 
 Your events will now begin to flow to Survicate in device mode.
+
+### using the SurvicateDestination plugin
+
+***identify***
+
+In the SurvicateDestination plugin, the identify event from Segment is transferred to the setUserTrait method of Survicate. This is achieved within the identify function of the SurvicateDestination class. The traits and userId from the IdentifyEvent are extracted and set as user traits in Survicate using the setUserTrait method. The traits are a dictionary where each key-value pair is set as a user trait. The userId is also set as a user trait with the key "userId".
+
+***track***
+
+In the SurvicateDestination plugin, the track method from Segment is used as the invokeEvent method in Survicate. This means that when you track an event in Segment, it will be invoked in Survicate.
+
+***screen***
+
+Similarly, the screen method from Segment is used as the enterScreen method in Survicate. This means that when you track a screen in Segment, it will be entered in Survicate.
