@@ -2,7 +2,7 @@
 //  Version.swift
 //  Segment
 //
-//  Created by Brandon Sneed on 2/24/2022.
+//  Created by Brandon Sneed    on 2/24/2022.
 //
 
 // DO NOT MODIFY THIS FILE BY HAND!!
