@@ -32,7 +32,7 @@ public class SurvicateDestination: DestinationPlugin {
     
     public func identify(event: IdentifyEvent) -> IdentifyEvent? {       
         if let userId = event.userId {
-            SurvicateSdk.shared.setUserTrait(withName: "userId", value: userId)
+            SurvicateSdk.shared.setUserTrait(withName: "user_id", value: userId)
         }
 
         if let traits = event.traits?.dictionaryValue {
