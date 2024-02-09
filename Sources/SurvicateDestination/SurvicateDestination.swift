@@ -35,14 +35,22 @@ public class SurvicateDestination: DestinationPlugin {
             SurvicateSdk.shared.setUserTrait(withName: "user_id", value: userId)
         }
 
-        if let traits = event.traits?.dictionaryValue {
-            traits.forEach { key, value in
-                guard let value = value as? String else { return }
-                
-                SurvicateSdk.shared.setUserTrait(withName: key, value: value)
+        if let dictionary = event.traits?.dictionaryValue {
+            let traits: [UserTrait] = dictionary.compactMap { key, value in
+                switch value {
+                case let value as String:
+                    return UserTrait(withName: key, value: value)
+                case let value as Bool:
+                    return UserTrait(withName: key, value: value)
+                case let value as Double:
+                    return UserTrait(withName: key, value: value)
+                default:
+                    return nil
+                }
             }
+
+            SurvicateSdk.shared.setUserTraits(traits: traits)
         }
-   
         return event
     }
     
