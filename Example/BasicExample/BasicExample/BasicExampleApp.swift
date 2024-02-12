@@ -19,8 +19,8 @@ struct BasicExampleApp: App {
 }
 
 extension Analytics {
-        let analytics = Analytics(configuration: Configuration(writeKey: "<YOUR WRITE KEY>")
     static var main: Analytics = {
+        let analytics = Analytics(configuration: Configuration(writeKey: "<YOUR WRITE KEY>")
                     .flushAt(3)
                     .trackApplicationLifecycleEvents(true))
         analytics.add(plugin: SurvicateDestination())
