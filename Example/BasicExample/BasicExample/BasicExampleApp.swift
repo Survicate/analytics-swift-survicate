@@ -19,11 +19,11 @@ struct BasicExampleApp: App {
 }
 
 extension Analytics {
-    static var main: Analytics {
+    static var main: Analytics = {
         let analytics = Analytics(configuration: Configuration(writeKey: "<YOUR WRITE KEY>")
                     .flushAt(3)
                     .trackApplicationLifecycleEvents(true))
         analytics.add(plugin: SurvicateDestination())
         return analytics
-    }
+    }()
 }

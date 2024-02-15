@@ -20,12 +20,12 @@ let package = Package(
         .package(
             name: "Segment",
             url: "https://github.com/segmentio/analytics-swift.git",
-            from: "1.4.0"
+            from: "1.5.2"
         ),
         .package(
             name: "Survicate",
             url: "https://github.com/Survicate/survicate-ios-sdk",
-            from: "3.0.2"
+            from: "4.1.0"
         )
     ],
     targets: [
