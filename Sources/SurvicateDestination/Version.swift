@@ -13,4 +13,4 @@
 // Use release.sh's automation.
 
 // BREAKING.FEATURE.FIX
-internal let __destination_version = "3.0.2"
+internal let __destination_version = "4.1.0"
