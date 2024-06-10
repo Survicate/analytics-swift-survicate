@@ -55,8 +55,19 @@ public class SurvicateDestination: DestinationPlugin {
     }
     
     public func track(event: TrackEvent) -> TrackEvent? {
+        guard let dictionary = event.properties?.dictionaryValue else {
+            SurvicateSdk.shared.invokeEvent(name: event.event)
+            return event
+        }
         
-        SurvicateSdk.shared.invokeEvent(name: event.event)
+        var properties = [String: String]();
+        for (key, value) in dictionary {
+            if let property = value as? String {
+                properties[key] = property
+            }
+        }
+        
+        SurvicateSdk.shared.invokeEvent(name: event.event, with: properties)
         
         return event
     }
