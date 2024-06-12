@@ -6,8 +6,17 @@
         "repositoryURL": "https://github.com/segmentio/analytics-swift.git",
         "state": {
           "branch": null,
-          "revision": "c8fd5fdf59299f00b3e4303a1b12a6d88893bf56",
-          "version": "1.4.7"
+          "revision": "f6f3a7fafcace7bcdbda329f9b309f31bf9a42a1",
+          "version": "1.5.11"
+        }
+      },
+      {
+        "package": "JSONSafeEncoding",
+        "repositoryURL": "https://github.com/segmentio/jsonsafeencoding-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "af6a8b360984085e36c6341b21ecb35c12f47ebd",
+          "version": "2.0.0"
         }
       },
       {
@@ -15,8 +24,8 @@
         "repositoryURL": "https://github.com/segmentio/Sovran-Swift.git",
         "state": {
           "branch": null,
-          "revision": "64f3b5150c282a34af4578188dce2fd597e600e3",
-          "version": "1.1.0"
+          "revision": "24867f3e4ac62027db9827112135e6531b6f4051",
+          "version": "1.1.2"
         }
       },
       {
@@ -24,8 +33,8 @@
         "repositoryURL": "https://github.com/Survicate/survicate-ios-sdk",
         "state": {
           "branch": null,
-          "revision": "86f0e29d7cf8240575bf5951290703a42f9655ff",
-          "version": "3.0.2"
+          "revision": "a437db33dde4b0ba3804001dae5943674d5f7f9d",
+          "version": "4.4.0"
         }
       }
     ]
