@@ -14,7 +14,7 @@ public class SurvicateDestination: DestinationPlugin {
     public let type = PluginType.destination
 
     public let key = "Survicate"
-    public var analytics: Analytics? = nil
+    public weak var analytics: Analytics? = nil
     
     private var SurvicateSettings: SurvicateSettings?
         
