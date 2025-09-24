@@ -17,8 +17,16 @@ public class SurvicateDestination: DestinationPlugin {
     public weak var analytics: Analytics? = nil
     
     private var SurvicateSettings: SurvicateSettings?
-        
+    private var loginUserOnInitialization: Bool = false
+
+    private let USER_ID_KEY = "user_id"
+
     public init() { }
+
+    public func enableLoginUserOnInitialization(_ enabled: Bool) -> SurvicateDestination {
+        self.loginUserOnInitialization = enabled
+        return self
+    }
 
     public func update(settings: Settings, type: UpdateType) {
         guard type == .initial else { return }
@@ -28,11 +36,17 @@ public class SurvicateDestination: DestinationPlugin {
         
         try? SurvicateSdk.shared.setWorkspaceKey(tempSettings.workspaceKey)
         SurvicateSdk.shared.initialize()
+
+        if loginUserOnInitialization {
+            if let userId = analytics?.userId, !userId.isEmpty {
+                SurvicateSdk.shared.setUserTrait(withName: USER_ID_KEY, value: userId)
+            }
+        }
     }
     
-    public func identify(event: IdentifyEvent) -> IdentifyEvent? {       
+    public func identify(event: IdentifyEvent) -> IdentifyEvent? {
         if let userId = event.userId {
-            SurvicateSdk.shared.setUserTrait(withName: "user_id", value: userId)
+            SurvicateSdk.shared.setUserTrait(withName: USER_ID_KEY, value: userId)
         }
 
         if let dictionary = event.traits?.dictionaryValue {

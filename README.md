@@ -40,6 +40,16 @@ Just under your Analytics-Swift library setup, call `analytics.add(plugin: ...)`
 
 Your events will now begin to flow to Survicate in device mode.
 
+### Auto-login User on Initialization
+
+You can optionally enable automatic user login on initialization, which will set the user_id trait based on Segment's userId when the destination initializes:
+
+```swift
+analytics.add(plugin: SurvicateDestination()
+    .enableLoginUserOnInitialization(true)
+)
+```
+
 ### using the SurvicateDestination plugin
 
 ***identify***
@@ -57,3 +67,13 @@ Similarly, the screen method from Segment is used as the enterScreen method in S
 ***reset***
 
 The reset method from Segment is used as the reset method in Survicate. This means that when you reset the user in Segment, it will be reset in Survicate.
+
+## Issues
+
+Got an Issue?
+
+To make things more streamlined, we’ve transitioned our issue reporting to our customer support platform. If you encounter any bugs or have feedback, please reach out to our customer support team. Your insights are invaluable to us, and we’re here to help ensure your experience is top-notch!
+
+Contact us via Intercom in the application, or drop us an email at: [support@survicate.com]
+
+Thank you for your support and understanding!
