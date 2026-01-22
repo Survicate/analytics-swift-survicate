@@ -25,7 +25,7 @@ let package = Package(
         .package(
             name: "Survicate",
             url: "https://github.com/Survicate/survicate-ios-sdk",
-            from: "6.0.0"
+            from: "7.0.0"
         )
     ],
     targets: [
