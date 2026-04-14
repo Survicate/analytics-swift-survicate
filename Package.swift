@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SurvicateDestination",
     platforms: [
-        .iOS("14.0"),
+        .iOS("15.0"),
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -25,7 +25,7 @@ let package = Package(
         .package(
             name: "Survicate",
             url: "https://github.com/Survicate/survicate-ios-sdk",
-            from: "7.0.0"
+            from: "8.0.0"
         )
     ],
     targets: [
