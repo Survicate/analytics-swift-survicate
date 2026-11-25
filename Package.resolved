@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/Survicate/survicate-ios-sdk",
         "state": {
           "branch": null,
-          "revision": "9bb720250ab85040ce7959d2cd53899a18c9900f",
-          "version": "10.0.0"
+          "revision": "d0c0c5d2ec7a5e73e6e0a4d7bb849cfcefaca2ca",
+          "version": "10.0.1"
         }
       }
     ]
